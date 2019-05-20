@@ -1,0 +1,24 @@
+    {
+      "ipath": "hysds::data/eonet-event",
+      "match_pattern": "/(?P<prod_type>EVENT-.*?)-(?P<category>.*?)-(?P<source>.*?)-(?P<event_id>.*?)-(?P<year>\\d{4})(?P<month>\\d{2})(?P<day>\\d{2})T(?P<time>\\d*)-(?P<version>.*)$",
+      "alt_match_pattern": null,
+      "extractor": null,
+      "level": "l0",
+      "type": "event",
+      "publish": {
+        "s3-profile-name": "default",
+        "location": "s3://{{ DATASET_S3_ENDPOINT }}:80/{{ DATASET_BUCKET }}/products/event/{category}/{source}/{version}/{year}",
+        "urls": [
+          "http://{{ DATASET_BUCKET }}.{{ DATASET_S3_WEBSITE_ENDPOINT }}/products/event/{category}/{source}/{version}/{year}",
+          "s3://{{ DATASET_S3_ENDPOINT }}:80/{{ DATASET_BUCKET }}/products/event/{category}/{source}/{version}/{year}"
+        ]
+      },
+      "browse": {
+        "s3-profile-name": "default",
+        "location": "s3://{{ DATASET_S3_ENDPOINT }}:80/{{ DATASET_BUCKET }}/browse/event/{category}/{source}/{version}/{year}",
+        "urls": [
+          "http://{{ DATASET_BUCKET }}.{{ DATASET_S3_WEBSITE_ENDPOINT }}/browse/event/{category}/{source}/{version}/{year}",
+          "s3://{{ DATASET_S3_ENDPOINT }}:80/{{ DATASET_BUCKET }}/browse/event/{category}/{source}/{version}/{year}"
+        ]
+      }
+    }
