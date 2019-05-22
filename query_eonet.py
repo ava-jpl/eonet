@@ -73,8 +73,8 @@ def run_query(query):
     try:
         session = requests.session()
         response = session.get(query, timeout=45)
-    except Exception, e:
-        raise Exception('Query failed: {0}\nquery: {1}'.format(e, query)) 
+    except Exception:
+        raise Exception('Query failed: {0}'.format(query)) 
     #print(response)
     if response.status_code != 200:
         raise Exception("{0} status for query: {1}".format(response.status_code, query))
