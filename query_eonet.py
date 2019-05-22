@@ -44,8 +44,8 @@ def main(starttime=None, endtime=None, lookback_days=None, status=None, source=N
             for geometry in geometries:
                 event['geometries'] = [geometry]
                 build_event_product.build(event, submit)
-        except Exception, err:
-            print('failed on build {} with err: {}'.format(event, err))
+        except Exception:
+            print('failed on build {}'.format(event))
     if redis:
         redis_set(REDIS_KEY, now) #sets the redis query to the runtime
 
