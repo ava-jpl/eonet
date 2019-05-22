@@ -119,6 +119,6 @@ def submit_product(ds, met):
         ingest(uid, './datasets.json', app.conf.GRQ_UPDATE_URL, app.conf.DATASET_PROCESSED_QUEUE, ds_dir, None) 
         if os.path.exists(uid):
             shutil.rmtree(uid)
-    except Exception, err:
-        print('failed on submission of {0} with {1}'.format(uid, err))
+    except Exception:
+        print('failed on submission of {0}'.format(uid))
 
