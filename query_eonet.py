@@ -46,8 +46,8 @@ def main(starttime=None, endtime=None, lookback_days=None, status=None, source=N
                 build_event_product.build(event, submit)
         except Exception:
             print('failed on build {}'.format(event))
-    if redis:
-        redis_set(REDIS_KEY, now) #sets the redis query to the runtime
+    #if redis:
+    #    redis_set(REDIS_KEY, now) #sets the redis query to the runtime
 
 def build_query(lookback_days, status, source, polygon_string, now):
     '''builds a query url from the input filter params. returns the url'''
