@@ -44,10 +44,14 @@ def build_id(event):
         category = event['categories'][0]['title'].upper()
         stripped_dt = re.sub('-|:', '', event['geometries'][-1]['date'])
         prod_dt = dateutil.parser.parse(stripped_dt).strftime('%Y%m%dT%H%M%S')
-        uid = '{0}-{1}-{2}-{3}-{4}-{5}'.format(PRODUCT_PREFIX, category, source, event_id, prod_dt, VERSION)
+        uid = '{0}-{1}-{2}-{3}-{4}-{5}'.format(PRODUCT_PREFIX, clean(category), clean(source), clean(event_id), prod_dt, VERSION)
     except:
         raise Exception('failed on {}'.format(event))
     return uid
+
+def clean(instr):
+    '''clean the string'''
+    return re.sub('[^a-z^A-Z^0-9\^_]+', '', instr.replace(' ', '_').replace('-','_')).strip('_')
 
 def build_dataset(event):
     '''parse out the relevant dataset parameters and return as dict'''
